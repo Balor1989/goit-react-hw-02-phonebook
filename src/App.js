@@ -15,7 +15,7 @@ class App extends Component {
      e.preventDefault()
     const contact = {
       id: shortid.generate(),
-      name:this.inputChange()
+      name: this.state.name
      }
    
     this.setState(prevState => (
@@ -23,8 +23,7 @@ class App extends Component {
         contacts: [contact, ...prevState.contacts]
       }
     ))
-    console.log(this.state.contacts)
-    this.setState({name:''})
+    // this.setState({name:''})
     console.log('Submit')
   }
   inputChange = (e) => {
