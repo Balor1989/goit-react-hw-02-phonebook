@@ -42,7 +42,11 @@ class App extends Component {
  }
 
   render() {
-    const{filter} = this.state
+    const { contacts, filter } = this.state
+    
+    const normalizedFilter = filter.toLowerCase();
+    const visibleContactCards = contacts.filter( contact => contact.name.toLowerCase().includes(normalizedFilter))
+
     return (
       <>
         <Phonebook
@@ -50,7 +54,7 @@ class App extends Component {
         <Filter onFilterChange={this.filterChange}
                 value={filter}
         />
-        <Contacts contacts={this.state.contacts} />
+        <Contacts contacts={visibleContactCards} />
       </>
     )
   }
