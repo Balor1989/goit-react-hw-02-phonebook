@@ -1,4 +1,6 @@
 import { Component } from "react/cjs/react.production.min";
+import { BsFillTelephonePlusFill } from "react-icons/bs";
+import { IconContext } from "react-icons";
 import s from './Phonebook.module.css'
 
 
@@ -34,7 +36,10 @@ class Phonebook extends Component {
         const{name, number} = this.state
         return (
                 <>
-                    <h2 className={s.phonebookTitle}>Phonebook</h2>
+                <h2 className={s.phonebookTitle}>Phonebook 
+                    <IconContext.Provider value={{ color: "rgb(198, 131, 204)", size: "25px", style: { margin: "0 0 0 15px" } }}>
+                    <BsFillTelephonePlusFill />
+                    </IconContext.Provider></h2>
                     <form className={s.phonebookForm} onSubmit={this.formSubmit} >
                         <div className={s.inputBox}>
                             <label className={s.label}>Name</label>
