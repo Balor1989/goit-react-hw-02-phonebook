@@ -43,18 +43,27 @@ class App extends Component {
          Notify.success(`${values.name} is added in contacts`)
           }
 
+  deleteContactCard = (cardId) => {
+    this.setState(prevState => (
+      {contacts: prevState.contacts.filter(contact => contact.id !== cardId)}
+    ))
+  }
+  
+  // deleteTodo = (todoId) => {
+  //   this.setState(prevState => ({
+  //     todos: prevState.todos.filter(todo => todo.id !== todoId)
+  //   }));
+  // }
+
   filterChange = (e) => {
     this.setState({ filter: e.target.value })
     console.log(e.target.value)
   }
   
-  findInputValue = () => {
-   
- }
 
   render() {
     const { contacts, filter } = this.state
-    
+
     const normalizedFilter = filter.toLowerCase();
     const visibleContactCards = contacts.filter( contact => contact.name.toLowerCase().includes(normalizedFilter))
 
@@ -65,7 +74,9 @@ class App extends Component {
         <Filter onFilterChange={this.filterChange}
                 value={filter}
         />
-        <Contacts contacts={visibleContactCards} />
+        <Contacts contacts={visibleContactCards}
+        onDeleteContactCard={this.deleteContactCard} 
+        />
       </>
     )
   }

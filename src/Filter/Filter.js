@@ -2,7 +2,7 @@
 
 const Filter = ({value, onFilterChange}) => (
     <div>
-        <h2>Filter</h2>
+        <h2>Find contacts by name</h2>
         <input
             type="text"
             value={value}
