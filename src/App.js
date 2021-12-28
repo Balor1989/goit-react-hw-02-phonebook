@@ -2,6 +2,7 @@ import { Component } from "react/cjs/react.production.min";
 import Contacts from "./Contacts/Contacts";
 import Phonebook from "./Phonebook/Phonebook";
 import shortid from "shortid";
+import Filter from "./Filter";
 
 
 class App extends Component {
@@ -31,12 +32,24 @@ class App extends Component {
         ))
           }
 
+  filterChange = (e) => {
+    this.setState({ filter: e.target.value })
+    console.log(e.target.value)
+  }
+  
+  findInputValue = () => {
+   
+ }
+
   render() {
+    const{filter} = this.state
     return (
       <>
         <Phonebook
-          onAddContactCard={this.addContactCard}
- />
+          onAddContactCard={this.addContactCard} />
+        <Filter onFilterChange={this.filterChange}
+                value={filter}
+        />
         <Contacts contacts={this.state.contacts} />
       </>
     )

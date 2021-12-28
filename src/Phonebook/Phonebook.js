@@ -13,7 +13,8 @@ class Phonebook extends Component {
         e.preventDefault()
         console.log(this.state)
         this.props.onAddContactCard(this.state)
-        console.log('Submit')
+        this.setState({ number: '', name: '' })
+        
     };
 
     inputName = e => {
@@ -24,12 +25,12 @@ class Phonebook extends Component {
     inputNumber = e => {
         this.setState({ number: e.target.value })
     };
-
+    
     render() {
         return (
                 <>
                     <h2 className="phonebookTitle">Phonebook</h2>
-                    <form onSubmit={this.formSubmit}>
+                    <form onSubmit={this.formSubmit} >
                         <div>
                             <label>Name</label>
                             <input onChange={this.inputName}

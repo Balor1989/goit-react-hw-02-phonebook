@@ -2,9 +2,6 @@
 
 const Contacts = ({ contacts }) => (
     <>
-        <div>
-            
-    </div>
     <ul>
         {contacts.map(({ id, name, number}) => (
             <li key={id} >
