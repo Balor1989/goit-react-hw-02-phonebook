@@ -56,8 +56,9 @@ class Phonebook extends Component {
                             required
                             />
                         </div>
-            
-                        <button className={s.deleteButon} type="submit">Add contact</button>
+                        <div className={s.buttonBox}>
+                        <button className={s.deleteButton} type="submit">Add contact</button>
+                        </div>
                     </form>
                 </>
         )

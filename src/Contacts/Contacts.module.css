@@ -1,28 +1,21 @@
-.phonebookTitle {
-  text-align: center;
-  margin: 0;
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 35px;
+.cardList {
+  list-style: none;
+  padding: 0;
 }
-.inputBox {
-  width: 300px;
+.cardBox {
+  padding: 20px 50px;
   display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-.label {
-  margin-bottom: 10px;
-  font-weight: 700;
+.cardBox:not(:last-child) {
+  margin-bottom: 20px;
 }
-.input {
-  font-size: 17px;
-}
-.buttonBox {
-  text-align: center;
-  margin-bottom: 30px;
+.cardValues {
+  margin: 0;
+  font-size: 20px;
 }
 
 .deleteButton {
@@ -32,7 +25,7 @@
   font-size: 15px;
   cursor: pointer;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 4px;
   color: #000000;
   background-color: #d4cece;
