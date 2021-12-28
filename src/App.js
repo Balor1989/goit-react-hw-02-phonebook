@@ -2,20 +2,22 @@ import { Component } from "react/cjs/react.production.min";
 import Contacts from "./Contacts/Contacts";
 import Phonebook from "./Phonebook/Phonebook";
 import shortid from "shortid";
-import file from './Contacts/file.json'
+
 
 class App extends Component {
 
   state = {
-    contacts: file,
-    name: ''
+    contacts: [],
+    name: '',
+    number:''
   }
 
   formSubmit = (e) => {
      e.preventDefault()
     const contact = {
       id: shortid.generate(),
-      name: this.state.name
+      name: this.state.name,
+      number: this.state.number
      }
    
     this.setState(prevState => (
@@ -23,12 +25,15 @@ class App extends Component {
         contacts: [contact, ...prevState.contacts]
       }
     ))
-    // this.setState({name:''})
+    
     console.log('Submit')
   }
-  inputChange = (e) => {
-    // console.log(e.target.value)
+  inputName = e => {
     this.setState({name: e.target.value})
+  }
+
+  inputNumber = e => {
+    this.setState({number: e.target.value})
   }
 
 
@@ -37,7 +42,8 @@ class App extends Component {
       <>
         <Phonebook
           onFormSubmit={this.formSubmit}
-          onInputChange={this.inputChange}
+          onInputName={this.inputName}
+          onInputNumber={this.inputNumber}
         />
         <Contacts contacts={this.state.contacts} />
       </>
