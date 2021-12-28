@@ -3,6 +3,7 @@ import Contacts from "./Contacts/Contacts";
 import Phonebook from "./Phonebook/Phonebook";
 import shortid from "shortid";
 import Filter from "./Filter";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 class App extends Component {
@@ -18,7 +19,16 @@ class App extends Component {
   }
 
   addContactCard = (values) => {
-          const {name, number} = values
+    const { contacts } = this.state
+    const { name, number } = values
+    const repeatName = contacts.find(contact => {
+          return contact.name.toLowerCase() === values.name.toLowerCase()
+         })
+          if (repeatName) {
+            Notify.warning(`${values.name} is already in contacts`)
+            return
+          } 
+
             const contact = {
             id: shortid.generate(),
             name: name,
@@ -30,6 +40,7 @@ class App extends Component {
                 contacts: [contact, ...prevState.contacts]
             }
         ))
+         Notify.success(`${values.name} is added in contacts`)
           }
 
   filterChange = (e) => {
