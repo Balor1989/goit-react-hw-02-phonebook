@@ -1,3 +1,4 @@
+import s from './App.module.css'
 import { Component } from "react/cjs/react.production.min";
 import Contacts from "./Contacts/Contacts";
 import Phonebook from "./Phonebook/Phonebook";
@@ -20,7 +21,6 @@ class App extends Component {
 
   addContactCard = (values) => {
     const { contacts } = this.state
-    const { name, number } = values
     const repeatName = contacts.find(contact => {
           return contact.name.toLowerCase() === values.name.toLowerCase()
          })
@@ -31,8 +31,8 @@ class App extends Component {
 
             const contact = {
             id: shortid.generate(),
-            name: name,
-            number: number
+            name: values.name,
+            number: values.number
         }
 
         this.setState(prevState => (
@@ -40,6 +40,8 @@ class App extends Component {
                 contacts: [contact, ...prevState.contacts]
             }
         ))
+          values.name = ''
+          values.number=''
          Notify.success(`${values.name} is added in contacts`)
           }
 
@@ -49,11 +51,6 @@ class App extends Component {
     ))
   }
   
-  // deleteTodo = (todoId) => {
-  //   this.setState(prevState => ({
-  //     todos: prevState.todos.filter(todo => todo.id !== todoId)
-  //   }));
-  // }
 
   filterChange = (e) => {
     this.setState({ filter: e.target.value })
@@ -68,7 +65,7 @@ class App extends Component {
     const visibleContactCards = contacts.filter( contact => contact.name.toLowerCase().includes(normalizedFilter))
 
     return (
-      <>
+      <section className={s.phonebookSection}>
         <Phonebook
           onAddContactCard={this.addContactCard} />
         <Filter onFilterChange={this.filterChange}
@@ -77,7 +74,7 @@ class App extends Component {
         <Contacts contacts={visibleContactCards}
         onDeleteContactCard={this.deleteContactCard} 
         />
-      </>
+      </section>
     )
   }
 

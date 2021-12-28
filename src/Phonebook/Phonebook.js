@@ -1,5 +1,5 @@
 import { Component } from "react/cjs/react.production.min";
-
+import s from './Phonebook.module.css'
 
 
 class Phonebook extends Component {
@@ -12,9 +12,14 @@ class Phonebook extends Component {
     formSubmit = e => {
         e.preventDefault()
         this.props.onAddContactCard(this.state)
-        this.setState({ number: '', name: '' })
+        // this.setState({ number: '', name: '' })
         
     };
+
+    // resetState = () => {
+        
+    //   this.setState({ number: '', name: '' })  
+    // }
 
     inputName = e => {
         this.setState({ name: e.target.value })
@@ -26,13 +31,14 @@ class Phonebook extends Component {
     };
     
     render() {
+        const{name, number} = this.state
         return (
                 <>
-                    <h2 className="phonebookTitle">Phonebook</h2>
-                    <form onSubmit={this.formSubmit} >
-                        <div>
-                            <label>Name</label>
-                            <input onChange={this.inputName}
+                    <h2 className={s.phonebookTitle}>Phonebook</h2>
+                    <form className={s.phonebookForm} onSubmit={this.formSubmit} >
+                        <div className={s.inputBox}>
+                            <label className={s.label}>Name</label>
+                            <input className={s.input} value={name} onChange={this.inputName}
                             type="text"
                             name="name"
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -40,9 +46,9 @@ class Phonebook extends Component {
                             required
                             />
                         </div>
-                        <div>
-                            <label>Number</label>
-                            <input onChange={this.inputNumber}
+                        <div className={s.inputBox}>
+                            <label className={s.label}>Number</label>
+                            <input className={s.input} value={number} onChange={this.inputNumber}
                             type="tel"
                             name="number"
                             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -51,7 +57,7 @@ class Phonebook extends Component {
                             />
                         </div>
             
-                        <button type="submit">Add contact</button>
+                        <button className={s.deleteButon} type="submit">Add contact</button>
                     </form>
                 </>
         )
