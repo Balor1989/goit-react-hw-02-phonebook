@@ -1,13 +1,38 @@
+import { Component } from "react/cjs/react.production.min";
 
 
 
-const Phonebook =({onFormSubmit, onInputName, onInputNumber}) => (
-            <>
-                <h2 className="phonebookTitle">Phonebook</h2>
-                    <form onSubmit={onFormSubmit}>
+class Phonebook extends Component {
+
+    state = {
+        name: '',
+        number:''
+    }
+
+    formSubmit = e => {
+        e.preventDefault()
+        console.log(this.state)
+        this.props.onAddContactCard(this.state)
+        console.log('Submit')
+    };
+
+    inputName = e => {
+        this.setState({ name: e.target.value })
+        console.log(e.target.value)
+    };
+
+    inputNumber = e => {
+        this.setState({ number: e.target.value })
+    };
+
+    render() {
+        return (
+                <>
+                    <h2 className="phonebookTitle">Phonebook</h2>
+                    <form onSubmit={this.formSubmit}>
                         <div>
                             <label>Name</label>
-                            <input onChange={onInputName}
+                            <input onChange={this.inputName}
                             type="text"
                             name="name"
                             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -17,7 +42,7 @@ const Phonebook =({onFormSubmit, onInputName, onInputNumber}) => (
                         </div>
                         <div>
                             <label>Number</label>
-                            <input onChange={onInputNumber}
+                            <input onChange={this.inputNumber}
                             type="tel"
                             name="number"
                             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -26,10 +51,12 @@ const Phonebook =({onFormSubmit, onInputName, onInputNumber}) => (
                             />
                         </div>
             
-                    <button type="submit">Add contact</button>
-                </form>
-            </>
+                        <button type="submit">Add contact</button>
+                    </form>
+                </>
         )
+    }
+}
 
 
 
