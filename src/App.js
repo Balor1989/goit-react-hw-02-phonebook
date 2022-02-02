@@ -34,6 +34,10 @@ class App extends Component {
 		}));
 
 		Notify.success(`${values.name} is added in contacts`);
+
+		// clears the fields 'name' and 'number' if the action is successful
+		values.name = '';
+		values.number = '';
 	};
 
 	deleteContactCard = cardId => {
